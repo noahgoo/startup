@@ -6,3 +6,6 @@
 
 - Forward Proxy: hides client, used for anonymity and filtering
 - Reverse Proxy: hides server, used for load balancing and protection
+
+### HTML
+
