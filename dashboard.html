@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <header>
+      <h1>MasteryLoop</h1>
+
+      <nav>
+        <menu>
+          <li><a href="index.html">Logout</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="create-quiz.html">Create Quiz</a></li>
+          <li><a href="take-quiz.html">Take Quiz</a></li>
+        </menu>
+      </nav>
+      <hr />
+    </header>
+    <main>
+      <div class="quizzes">
+        <h2>Your Quizzes</h2>
+        <!-- List of quizzes will be displayed here -->
+        <div class="container">
+          <svg width="240" height="140">
+            <rect width="240" height="140" rx="12" fill="cyan" />
+            <text x="20" y="40" font-size="18" fill="black">
+              Quiz 1: Sample Quiz
+            </text>
+          </svg>
+          <button>Start Quiz</button>
+          <button>Edit Quiz</button>
+        </div>
+        <!-- Add new quiz -->
+        <div class="container">
+          <svg width="240" height="140">
+            <rect width="240" height="140" rx="12" fill="lightgray" />
+            <text x="70" y="80" font-size="24" fill="black">+</text>
+          </svg>
+          <button>Create New Quiz</button>
+      </div>
+    </main>
+  </body>
+</html>
