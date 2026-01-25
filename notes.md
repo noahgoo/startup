@@ -9,3 +9,7 @@
 
 ### HTML
 
+- Use svg to make colored shapes with pure html. Helps to make placeholders and other things.
+- Make your homepage index.html because that will be the first page the web looks for. For me make that the login page.
+- LiveServer VSCode extension is super useful for showing you what your site looks like and editing in real time.
+- You can use a script to deploy files to your remote server which hosts your web application.
