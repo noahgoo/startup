@@ -59,3 +59,7 @@ Below is a simple sequence diagram for completing a quiz or editing/creating a q
 - [x] Most up to date version is pushed to GitHub
 - [x] HTML is deployed to my production environment
 - [x] Application is available at startup.masteryloop.click
+
+## CSS Deliverable
+
+- [x] I downloaded the simon-css repo and looked around in it before uploading it to my simon.masteryloop.click domain.
