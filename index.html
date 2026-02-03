@@ -3,35 +3,91 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="src/index.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>MasteryLoop</title>
   </head>
-  <body>
-    <header>
-      <h1>>MasteryLoop</h1>
-      <img src="assets/learning_image.png" alt="Learning Image" width="200" />
+  <body
+    class="bg-gradient-to-br from-slate-300 to-slate-100 min-h-screen flex flex-col"
+  >
+    <header class="py-8 px-4">
+      <div class="flex items-center justify-center">
+        <div class="text-center">
+          <h1 class="text-5xl font-bold text-cyan-500 bg-clip-text mb-2">
+            MasteryLoop
+          </h1>
+          <p class="text-slate-400 text-lg">The Path to Learning Mastery</p>
+        </div>
+        <img
+          src="assets/learning_image.png"
+          alt="Learning Image"
+          class="w-16 h-16 object-cover rounded-md ml-6"
+        />
+      </div>
     </header>
+
     <!-- Login page content goes here -->
-    <main>
-      <h2>Login</h2>
-      <form method="get" action="dashboard.html">
-        <div>
-          <span>Email</span>
-          <input type="text" placeholder="example@email.com" />
+    <main class="flex-1 flex items-center justify-center px-4 pb-8">
+      <div class="w-full max-w-md">
+        <div class="bg-slate-800 rounded-lg p-8 border border-slate-700">
+          <form method="get" action="dashboard.html" class="space-y-5">
+            <div>
+              <label for="email" class="block text-slate-300 font-medium mb-2"
+                >Email Address</label
+              >
+              <input
+                id="email"
+                type="email"
+                placeholder="example@gmail.com"
+                class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                required
+              />
+            </div>
+
+            <div>
+              <label
+                for="password"
+                class="block text-slate-300 font-medium mb-2"
+                >Password</label
+              >
+              <input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                required
+              />
+            </div>
+
+            <div class="pt-2 space-y-3">
+              <button
+                type="submit"
+                class="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold py-2 px-4 rounded-lg transition transform hover:scale-105 active:scale-95"
+              >
+                Sign In
+              </button>
+              <button
+                type="button"
+                onclick="window.location.href = 'signup.html'"
+                class="w-full bg-slate-700 hover:bg-slate-600 text-white font-semibold py-2 px-4 rounded-lg border border-slate-600 transition"
+              >
+                Create Account
+              </button>
+            </div>
+          </form>
         </div>
-        <div>
-          <span>Password</span>
-          <input type="text" placeholder="password" />
-        </div>
-        <button type="submit">Login</button>
-        <button type="submit">Sign Up</button>
-      </form>
+      </div>
     </main>
-    <footer>
-      <hr />
-      <span>Developed by Noah Goo</span>
-      <br />
-      <a href="https://github.com/noahgoo/startup">GitHub Repo</a>
+
+    <footer
+      class="py-6 px-4 border-t border-slate-700 text-center text-slate-400 text-sm"
+    >
+      <p class="mb-2">Developed by Noah Goo</p>
+      <a
+        href="https://github.com/noahgoo/startup"
+        class="text-cyan-400 hover:text-cyan-300 transition"
+      >
+        GitHub Repo
+      </a>
     </footer>
   </body>
 </html>
