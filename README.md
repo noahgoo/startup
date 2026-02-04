@@ -63,3 +63,4 @@ Below is a simple sequence diagram for completing a quiz or editing/creating a q
 ## CSS Deliverable
 
 - [x] I downloaded the simon-css repo and looked around in it before uploading it to my simon.masteryloop.click domain.
+- [x] Added a comment for where I will be using the ZenQuote free API to get my motivational quote and added username on nav bar.
