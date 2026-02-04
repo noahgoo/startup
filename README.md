@@ -62,5 +62,6 @@ Below is a simple sequence diagram for completing a quiz or editing/creating a q
 
 ## CSS Deliverable
 
-- [x] I downloaded the simon-css repo and looked around in it before uploading it to my simon.masteryloop.click domain.
+- [x] I've completed the prerequisites and deployed Simon-CSS to my production environment.
 - [x] Added a comment for where I will be using the ZenQuote free API to get my motivational quote and added username on nav bar.
+- [x] Styling looks great for different sized screens. Navbar becomes hamburger button when screen gets too small. Grid of quizzes goes down from 3 to 1 columns for small screens.
