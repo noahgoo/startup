@@ -9,44 +9,44 @@
   <body
     class="bg-gradient-to-br from-slate-200 to-slate-50 min-h-screen flex flex-col"
   >
-    <header class="py-8 text-center">
-      <h1 class="text-4xl font-bold text-emerald-400 mb-6">MasteryLoop</h1>
-
-      <nav class="flex justify-center gap-8 mb-4">
-        <menu class="contents">
-          <li>
-            <a
-              href="index.html"
-              class="text-slate-800 hover:text-white transition"
-              >Logout</a
-            >
-          </li>
-          <li>
-            <a
-              href="dashboard.html"
-              class="text-slate-800 hover:text-white transition"
-              >Dashboard</a
-            >
-          </li>
-          <li>
-            <a
-              href="create-quiz.html"
-              class="text-slate-800 hover:text-white transition"
-              >Create Quiz</a
-            >
-          </li>
-          <li>
-            <a
-              href="take-quiz.html"
-              class="text-slate-800 hover:text-white transition"
-              >Take Quiz</a
-            >
-          </li>
-        </menu>
-      </nav>
-      <hr />
+    <header class="bg-white border-b border-slate-200 py-4 px-6">
+      <div class="flex items-center justify-between max-w-7xl mx-auto">
+        <h1 class="text-3xl font-bold text-emerald-400">MasteryLoop</h1>
+        <nav class="flex gap-8">
+          <menu class="contents">
+            <li>
+              <a
+                href="dashboard.html"
+                class="text-slate-800 hover:text-teal-600 transition font-medium"
+                >Dashboard</a
+              >
+            </li>
+            <li>
+              <a
+                href="create-quiz.html"
+                class="text-slate-800 hover:text-teal-600 transition font-medium"
+                >Create Quiz</a
+              >
+            </li>
+            <li>
+              <a
+                href="take-quiz.html"
+                class="text-slate-800 hover:text-teal-600 transition font-medium"
+                >Take Quiz</a
+              >
+            </li>
+            <li>
+              <a
+                href="index.html"
+                class="text-slate-800 hover:text-teal-600 transition font-medium"
+                >Logout</a
+              >
+            </li>
+          </menu>
+        </nav>
+      </div>
     </header>
-    <main class="flex flex-col items-center">
+    <main class="flex flex-col items-center px-6 py-12">
       <h2 class="text-2xl font-semibold text-slate-800 mb-8">Your Quizzes</h2>
       <!-- List of quizzes from database will be displayed here -->
       <div class="flex flex-wrap gap-4 justify-center">
