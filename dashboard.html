@@ -51,7 +51,9 @@
       <!-- List of quizzes from database will be displayed here -->
       <div class="flex flex-wrap gap-4 justify-center">
         <div class="container flex flex-col items-center gap-4">
-          <div class="flex flex-col items-center gap-2">
+          <div
+            class="flex flex-col items-center gap-2 bg-teal-100 rounded-2xl p-4 border border-teal-600"
+          >
             <svg width="240" height="140">
               <rect width="240" height="140" rx="12" fill="lightblue" />
               <text
@@ -65,10 +67,10 @@
               </text>
             </svg>
             <div class="flex gap-2">
-              <button class="bg-amber-200 rounded-2xl mt-2 px-2">
+              <button class="bg-cyan-300 rounded-2xl mt-2 px-2">
                 Start Quiz
               </button>
-              <button class="bg-red-300 rounded-2xl mt-2 px-2">
+              <button class="bg-emerald-400 rounded-2xl mt-2 px-2">
                 Edit Quiz
               </button>
             </div>
@@ -76,21 +78,25 @@
         </div>
         <!-- Add new quiz -->
         <div class="container flex flex-col items-center gap-4">
-          <svg width="240" height="140">
-            <rect width="240" height="140" rx="12" fill="lightblue" />
-            <text
-              x="120"
-              y="80"
-              font-size="24"
-              fill="black"
-              text-anchor="middle"
-            >
-              +
-            </text>
-          </svg>
-          <button class="bg-green-300 rounded-2xl px-2 mb-8">
-            Create New Quiz
-          </button>
+          <div
+            class="flex flex-col items-center gap-4 bg-teal-100 rounded-2xl p-4 border border-teal-600 mb-4"
+          >
+            <svg width="240" height="140">
+              <rect width="240" height="140" rx="12" fill="lightblue" />
+              <text
+                x="120"
+                y="80"
+                font-size="24"
+                fill="black"
+                text-anchor="middle"
+              >
+                +
+              </text>
+            </svg>
+            <button class="bg-violet-300 rounded-2xl px-2">
+              Create New Quiz
+            </button>
+          </div>
         </div>
       </div>
     </main>
@@ -100,7 +106,7 @@
       <span>[User] has completed a quiz! 🎉</span>
     </div>
     <footer
-      class="py-6 px-4 border-t border-slate-700 text-center text-slate-400 text-sm"
+      class="py-6 px-4 border-t border-slate-700 text-center text-slate-400 text-sm mt-4"
     >
       <p class="mb-2">Developed by Noah Goo</p>
       <a
