@@ -67,3 +67,5 @@ Below is a simple sequence diagram for completing a quiz or editing/creating a q
 - [x] Styling looks great for different sized screens. Navbar becomes hamburger button when screen gets too small. Grid of quizzes goes down from 3 to 1 columns for small screens. Used flex for most other parts of the display.
 - [x] Used Tailwind CSS for index.html, dashboard.html, create-quiz.html, and take-quiz.html pages. Created a constistent theme and layout style.
 - [x] Used visually appealing colors (teal, white, slate, emerald) and there is no overflowing elements.
+- [x] Used class selectors for all Tailwind utilities, used ID selectors for menu toggle, used psuedo selectors like hover and focus on buttons and such, and element selector for links, buttons.
+- [x] Added new font Playwright NZ Basic to use for username.

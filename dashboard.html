@@ -6,11 +6,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Dashboard</title>
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Playwrite+NZ+Basic:wght@100..400&display=swap");
       a {
         text-decoration: none;
       }
       button {
         transition: all 0.2s ease;
+      }
+      .cool_font {
+        font-family: "Playwrite NZ Basic", sans-serif;
       }
     </style>
   </head>
@@ -53,7 +57,7 @@
               >
             </li>
           </menu>
-          <p class="text-teal-500 font-medium">Hi [User]!</p>
+          <p class="cool_font text-teal-500 font-medium">Hi [User]!</p>
         </nav>
 
         <!-- Mobile Nav Button -->
@@ -128,12 +132,12 @@
             </div>
             <div class="flex gap-12 justify-center">
               <button
-                class="text-white bg-teal-700 rounded-lg mt-2 px-6 py-2 hover:bg-teal-500"
+                class="text-white bg-teal-700 rounded-lg mt-2 px-6 py-2 hover:bg-teal-500 transition"
               >
                 Start Quiz
               </button>
               <button
-                class="text-slate-700 bg-white border border-emerald-700 rounded-lg mt-2 px-6 py-2 hover:bg-emerald-50"
+                class="text-slate-700 bg-white border border-emerald-700 rounded-lg mt-2 px-6 py-2 hover:bg-emerald-100 transition"
               >
                 Edit Quiz
               </button>
