@@ -46,56 +46,65 @@
         </nav>
       </div>
     </header>
-    <main class="flex flex-col items-center px-6 py-12">
-      <h2 class="text-2xl font-semibold text-slate-800 mb-8">Your Quizzes</h2>
-      <!-- List of quizzes from database will be displayed here -->
-      <div class="flex flex-wrap gap-4 justify-center">
-        <div class="container flex flex-col items-center gap-4">
-          <div
-            class="flex flex-col items-center gap-2 bg-teal-100 rounded-2xl p-4 border border-teal-600"
+    <main class="flex1 px-6 py-12">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-2xl font-semibold text-slate-800 mb-8">
+            Your Quizzes
+          </h2>
+          <a
+            href="create-quiz.html"
+            class="bg-emerald-400 hover:bg-emerald-500 text-white font-medium py-2.5 px-6 rounded-lg transition"
           >
-            <svg width="240" height="140">
-              <rect width="240" height="140" rx="12" fill="lightblue" />
-              <text
-                x="120"
-                y="70"
-                font-size="18"
-                fill="black"
-                text-anchor="middle"
-              >
-                Quiz 1: Sample Quiz
-              </text>
-            </svg>
-            <div class="flex gap-2">
-              <button class="bg-cyan-300 rounded-2xl mt-2 px-2">
-                Start Quiz
-              </button>
-              <button class="bg-emerald-400 rounded-2xl mt-2 px-2">
-                Edit Quiz
-              </button>
+            Create New Quiz
+          </a>
+        </div>
+        <!-- List of quizzes from database will be displayed here -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="container flex flex-col items-center gap-4">
+            <div
+              class="flex flex-col items-center gap-2 bg-teal-100 rounded-2xl p-4 border border-teal-600"
+            >
+              <svg width="240" height="140">
+                <rect width="240" height="140" rx="12" fill="lightblue" />
+                <text
+                  x="120"
+                  y="70"
+                  font-size="18"
+                  fill="black"
+                  text-anchor="middle"
+                >
+                  Quiz 1: Sample Quiz
+                </text>
+              </svg>
+              <div class="flex gap-2">
+                <button class="bg-cyan-300 rounded-2xl mt-2 px-2">
+                  Start Quiz
+                </button>
+                <button class="bg-emerald-400 rounded-2xl mt-2 px-2">
+                  Edit Quiz
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- Add new quiz -->
-        <div class="container flex flex-col items-center gap-4">
-          <div
-            class="flex flex-col items-center gap-4 bg-teal-100 rounded-2xl p-4 border border-teal-600 mb-4"
-          >
-            <svg width="240" height="140">
-              <rect width="240" height="140" rx="12" fill="lightblue" />
-              <text
-                x="120"
-                y="80"
-                font-size="24"
-                fill="black"
-                text-anchor="middle"
-              >
-                +
-              </text>
-            </svg>
-            <button class="bg-violet-300 rounded-2xl px-2">
-              Create New Quiz
-            </button>
+          <!-- Add new quiz -->
+          <div class="container flex flex-col items-center gap-4">
+            <div
+              class="flex flex-col items-center gap-4 bg-teal-100 rounded-2xl p-4 border border-teal-600 mb-4"
+            >
+              <svg width="240" height="140">
+                <rect width="240" height="140" rx="12" fill="lightblue" />
+                <text
+                  x="120"
+                  y="80"
+                  font-size="24"
+                  fill="black"
+                  text-anchor="middle"
+                >
+                  +
+                </text>
+              </svg>
+            </div>
           </div>
         </div>
       </div>
