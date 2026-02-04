@@ -3,53 +3,112 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>Dashboard</title>
   </head>
-  <body>
-    <header>
-      <h1>MasteryLoop</h1>
+  <body
+    class="bg-gradient-to-br from-slate-300 to-slate-100 min-h-screen flex flex-col"
+  >
+    <header class="py-8 text-center">
+      <h1 class="text-4xl font-bold text-cyan-500 mb-6">MasteryLoop</h1>
 
-      <nav>
-        <menu>
-          <li><a href="index.html">Logout</a></li>
-          <li><a href="dashboard.html">Dashboard</a></li>
-          <li><a href="create-quiz.html">Create Quiz</a></li>
-          <li><a href="take-quiz.html">Take Quiz</a></li>
+      <nav class="flex justify-center gap-8 mb-4">
+        <menu class="contents">
+          <li>
+            <a
+              href="index.html"
+              class="text-slate-800 hover:text-white transition"
+              >Logout</a
+            >
+          </li>
+          <li>
+            <a
+              href="dashboard.html"
+              class="text-slate-800 hover:text-white transition"
+              >Dashboard</a
+            >
+          </li>
+          <li>
+            <a
+              href="create-quiz.html"
+              class="text-slate-800 hover:text-white transition"
+              >Create Quiz</a
+            >
+          </li>
+          <li>
+            <a
+              href="take-quiz.html"
+              class="text-slate-800 hover:text-white transition"
+              >Take Quiz</a
+            >
+          </li>
         </menu>
       </nav>
       <hr />
     </header>
-    <main>
-      <div class="quizzes">
-        <h2>Your Quizzes</h2>
-        <!-- List of quizzes from database will be displayed here -->
-        <div class="container">
-          <svg width="240" height="140">
-            <rect width="240" height="140" rx="12" fill="cyan" />
-            <text x="20" y="40" font-size="18" fill="black">
-              Quiz 1: Sample Quiz
-            </text>
-          </svg>
-          <button>Start Quiz</button>
-          <button>Edit Quiz</button>
+    <main class="flex flex-col items-center">
+      <h2 class="text-2xl font-semibold text-slate-800 mb-8">Your Quizzes</h2>
+      <!-- List of quizzes from database will be displayed here -->
+      <div class="flex flex-wrap gap-4 justify-center">
+        <div class="container flex flex-col items-center gap-4">
+          <div class="flex flex-col items-center gap-2">
+            <svg width="240" height="140">
+              <rect width="240" height="140" rx="12" fill="lightblue" />
+              <text
+                x="120"
+                y="70"
+                font-size="18"
+                fill="black"
+                text-anchor="middle"
+              >
+                Quiz 1: Sample Quiz
+              </text>
+            </svg>
+            <div class="flex gap-2">
+              <button class="bg-amber-200 rounded-2xl mt-2 px-2">
+                Start Quiz
+              </button>
+              <button class="bg-red-300 rounded-2xl mt-2 px-2">
+                Edit Quiz
+              </button>
+            </div>
+          </div>
         </div>
         <!-- Add new quiz -->
-        <div class="container">
+        <div class="container flex flex-col items-center gap-4">
           <svg width="240" height="140">
-            <rect width="240" height="140" rx="12" fill="lightgray" />
-            <text x="70" y="80" font-size="24" fill="black">+</text>
+            <rect width="240" height="140" rx="12" fill="lightblue" />
+            <text
+              x="120"
+              y="80"
+              font-size="24"
+              fill="black"
+              text-anchor="middle"
+            >
+              +
+            </text>
           </svg>
-          <button>Create New Quiz</button>
+          <button class="bg-green-300 rounded-2xl px-2 mb-8">
+            Create New Quiz
+          </button>
+        </div>
       </div>
     </main>
-    <div class="Toast">
-        <span>[User] has completed a quiz! 🎉</span>
+    <div
+      class="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2 animate-fade-in"
+    >
+      <span>[User] has completed a quiz! 🎉</span>
     </div>
-    <footer>
-      <hr />
-      <span>Developed by Noah Goo</span>
-      <br />
-      <a href="https://github.com/noahgoo/startup">GitHub Repo</a>
+    <footer
+      class="py-6 px-4 border-t border-slate-700 text-center text-slate-400 text-sm"
+    >
+      <p class="mb-2">Developed by Noah Goo</p>
+      <a
+        href="https://github.com/noahgoo/startup"
+        class="text-cyan-400 hover:text-cyan-300 transition"
+      >
+        GitHub Repo
+      </a>
     </footer>
   </body>
 </html>
