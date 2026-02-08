@@ -1,0 +1,26 @@
+{
+  "name": "startup",
+  "version": "1.0.0",
+  "description": "Are you an engineer and find test questions to be particularly difficult and complex? How about using spaced repitition and mastery to develop the needed skills to confidently answer these questions. MasteryLoop makes it easier to gain those skills through an online web application that allows users to create custom quizzes with their homework problems, practice test questions, and other material. A simple alogrithm lets users try to solve a question, self check if they got the answer right, and rework the ones the missed. It's a much more effective and efficient way to master those difficult concepts and skills.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noahgoo/startup.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/noahgoo/startup/issues"
+  },
+  "homepage": "https://github.com/noahgoo/startup#readme",
+  "devDependencies": {
+    "vite": "^7.3.1"
+  }
+}
