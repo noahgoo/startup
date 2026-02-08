@@ -25,4 +25,4 @@
 - You can use `npm install` to redownload node_modules and any dependencies found in package.json.
 - The package-lock.json file tracks the version of the package you installed, so when redownloading node_modules it will download the correct versions you used before.
 - I want to look into Deno and Bun as potential tools to use instead of Node.js in the future.
--
+- React abstracts HTML and JS into a JSX file. It's converted back using a preprocessor like Vite.
