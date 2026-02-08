@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.cool_font {
+  font-family: "Playwrite NZ Basic", sans-serif;
+}
