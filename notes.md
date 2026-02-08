@@ -18,3 +18,11 @@
 
 - Tailwind CSS is nice because it's done inside the HTML and doesn't require bouncing between CSS and HTML files.
 - Tailwind only creates CSS files for what you use unlike Bootstrap which requires downloading the whole library
+
+## React Part 1
+
+- Node.js made it possible to run JavaScript on a server not just a browser. (It can power your entire stack)
+- You can use `npm install` to redownload node_modules and any dependencies found in package.json.
+- The package-lock.json file tracks the version of the package you installed, so when redownloading node_modules it will download the correct versions you used before.
+- I want to look into Deno and Bun as potential tools to use instead of Node.js in the future.
+-
