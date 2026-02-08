@@ -14,11 +14,11 @@ more effective and efficient way to master those difficult concepts and skills.
 
 These sketches show the three pages that will be used for home, taking a quiz, and editing/creating a quiz.
 
-![Home page](/assets/images/home_page.png)
+![Home page](/public/home_page.png)
 
-![Edit Quiz Page](/assets/images/edit_quiz_page.png)
+![Edit Quiz Page](/public/edit_quiz_page.png)
 
-![Take Quiz Page](/assets/images/take_quiz_page.png)
+![Take Quiz Page](/public/take_quiz_page.png)
 
 Below is a simple sequence diagram for completing a quiz or editing/creating a quiz.
 
