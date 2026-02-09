@@ -6,6 +6,7 @@ import {
   Route,
   Routes,
   useLocation,
+  Navigate,
 } from "react-router-dom";
 import { Dashboard } from "./dashboard/dashboard";
 import { CreateQuiz } from "./create-quiz/create-quiz";
@@ -120,7 +121,8 @@ export default function App() {
         <Header />
 
         <Routes>
-          <Route path="/login" element={<Login />} exact />
+          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/create-quiz" element={<CreateQuiz />} />
           <Route path="/take-quiz" element={<TakeQuiz />} />
