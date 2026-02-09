@@ -22,7 +22,7 @@ These sketches show the three pages that will be used for home, taking a quiz, a
 
 Below is a simple sequence diagram for completing a quiz or editing/creating a quiz.
 
-![Screenshot of sequence diagram for MasteryLoop.](/assets/images/startup_sequence_diagram.png)
+![Screenshot of sequence diagram for MasteryLoop.](/public/startup_sequence_diagram.png)
 
 ### Key Features
 
@@ -69,3 +69,7 @@ Below is a simple sequence diagram for completing a quiz or editing/creating a q
 - [x] Used visually appealing colors (teal, white, slate, emerald) and there is no overflowing elements.
 - [x] Used class selectors for all Tailwind utilities, used ID selectors for menu toggle, used psuedo selectors like hover and focus on buttons and such, and element selector for links, buttons.
 - [x] Added new font Playwright NZ Basic to use for username.
+
+## React Phase 1
+
+- [x]

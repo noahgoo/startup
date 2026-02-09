@@ -11,6 +11,7 @@ import { Dashboard } from "./dashboard/dashboard";
 import { CreateQuiz } from "./create-quiz/create-quiz";
 import { TakeQuiz } from "./take-quiz/take-quiz";
 import { Login } from "./login/login";
+import { Toast } from "./components/toast";
 
 function Header() {
   const location = useLocation();
@@ -125,6 +126,8 @@ export default function App() {
           <Route path="/take-quiz" element={<TakeQuiz />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+
+        <Toast />
 
         <footer className="py-6 px-4 border-t border-slate-700 text-center text-slate-400 text-sm">
           <p className="mb-2">Developed by Noah Goo</p>
