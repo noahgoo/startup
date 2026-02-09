@@ -72,4 +72,7 @@ Below is a simple sequence diagram for completing a quiz or editing/creating a q
 
 ## React Phase 1
 
-- [x]
+- [x] I completed the prerequesites and deployed the React version of Simon to production.
+- [x] Installed required packages including vite, react, and tailwindcss.
+- [x] Transferred my html pages into jsx components for login, take-quiz, create-quiz, dashboard, and toast.
+- [x] Added router between all different pages.
