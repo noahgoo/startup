@@ -26,3 +26,17 @@
 - The package-lock.json file tracks the version of the package you installed, so when redownloading node_modules it will download the correct versions you used before.
 - I want to look into Deno and Bun as potential tools to use instead of Node.js in the future.
 - React abstracts HTML and JS into a JSX file. It's converted back using a preprocessor like Vite.
+
+## React Part 2
+
+- console.time and console.timeEnd can be used to output time between the calls.
+- Functions are first order objects in JS. Can be declared anywhere and passed as parameters.
+- You can use `=>` to declare a function. Ex `a.sort((v1, v2) => v1 - v2);`
+- Return keyword is optional if no curly braces after `=>`
+- A closure allows a function to continue to reference its creation scope.
+- To slice a JS array, use var.slice(1, 3) (left inclusive, right exclusive)
+- JS continues to execute after `setTimeout` is called
+- `useEffect` hook allows you to represent lifecycle events (ex. run fn after every time component finishes rendering).
+- React keeps a table of states for components, that is what determines what gets rendered
+- Update states happens asynchonously
+- localStorage is an API to access browser's storage, can be used for caching. Use getItem, setItem, removeItem, clear. Must be type number, string or boolean.
