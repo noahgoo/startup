@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { checkAuth, newUser } from "./authHelper.js";
+import { checkAuth, newUser, setCurrentUser } from "./authHelper.js";
 
 export function Login() {
   const [email, setEmail] = React.useState("");
@@ -10,6 +10,7 @@ export function Login() {
   function loginUser() {
     // check if user is in local storage
     if (checkAuth(email, password)) {
+      setCurrentUser(email);
       navigate("/dashboard");
     } else {
       alert("Invalid email or password. Please try again.");
@@ -26,6 +27,7 @@ export function Login() {
       return;
     } else {
       newUser(email, password);
+      setCurrentUser(email);
       navigate("/dashboard");
     }
   }

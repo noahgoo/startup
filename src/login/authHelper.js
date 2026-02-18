@@ -7,3 +7,7 @@ export function checkAuth(email, password) {
 export function newUser(email, password) {
   localStorage.setItem(email, password);
 }
+
+export function setCurrentUser(email) {
+  localStorage.setItem("currentUser", email);
+}
