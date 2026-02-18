@@ -1,6 +1,9 @@
 import React from "react";
+import { useNavigate, Link } from "react-router-dom";
 
 export function Dashboard() {
+  const navigate = useNavigate();
+
   return (
     <main className="flex1 px-6 py-10">
       <div className="max-w-7xl mx-auto">
@@ -8,12 +11,12 @@ export function Dashboard() {
           <h2 className="text-2xl font-semibold text-slate-800 mb-8">
             Your Quizzes
           </h2>
-          <a
-            href="create-quiz.html"
+          <Link
+            to="/create-quiz"
             className="bg-emerald-400 hover:bg-emerald-500 text-white font-medium py-2.5 px-6 rounded-lg transition"
           >
             Create New Quiz
-          </a>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
