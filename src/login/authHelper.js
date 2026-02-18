@@ -11,3 +11,11 @@ export function newUser(email, password) {
 export function setCurrentUser(email) {
   localStorage.setItem("currentUser", email);
 }
+
+export function getCurrentUser() {
+  return localStorage.getItem("currentUser");
+}
+
+export function logoutUser() {
+  localStorage.removeItem("currentUser");
+}

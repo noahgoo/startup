@@ -13,6 +13,7 @@ import { CreateQuiz } from "./create-quiz/create-quiz";
 import { TakeQuiz } from "./take-quiz/take-quiz";
 import { Login } from "./login/login";
 import { Toast } from "./components/toast";
+import { logoutUser } from "./login/authHelper.js";
 
 function Header() {
   const location = useLocation();
@@ -68,6 +69,7 @@ function Header() {
             <li>
               <NavLink
                 to="/login"
+                onClick={logoutUser}
                 className="text-slate-800 hover:text-teal-600 transition font-medium"
               >
                 Logout
