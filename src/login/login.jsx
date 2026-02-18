@@ -18,8 +18,16 @@ export function Login() {
 
   function createUser() {
     // create a new user in local storage
-    newUser(email, password);
-    navigate("/dashboard");
+    if (email === "" || password === "") {
+      alert("Email and password cannot be empty.");
+      return;
+    } else if (localStorage.getItem(email)) {
+      alert("User already exists. Please log in.");
+      return;
+    } else {
+      newUser(email, password);
+      navigate("/dashboard");
+    }
   }
 
   return (
