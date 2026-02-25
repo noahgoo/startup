@@ -1,4 +1,4 @@
-import { getCurrentUser } from "../login/authHelper";
+import { getCurrentUser } from "./authHelper";
 
 export function createQuiz(title, questions = []) {
   const currentUser = getCurrentUser();
@@ -9,9 +9,10 @@ export function createQuiz(title, questions = []) {
 
   const quizArray = getQuizArray(currentUser);
   quizArray.push({ id: Date.now(), title: title, questions: questions });
-  localStorage.setItem(currentUser, JSON.stringify(quizArray));
+  localStorage.setItem(`quizzes_${currentUser}`, JSON.stringify(quizArray));
 }
 
+// maybe don't need
 export function addQuestion(quizTitle, question, answer) {
   const currentUser = getCurrentUser();
   if (currentUser === null) {
@@ -26,15 +27,18 @@ export function addQuestion(quizTitle, question, answer) {
     return;
   }
   quiz.questions.push({ question: question, answer: answer });
-  localStorage.setItem(currentUser, JSON.stringify(quizArray));
+  localStorage.setItem(`quizzes_${currentUser}`, JSON.stringify(quizArray));
 }
 
 export function getQuizArray(user) {
-  return JSON.parse(localStorage.getItem(user)) || [];
+  return JSON.parse(localStorage.getItem(`quizzes_${user}`)) || [];
 }
 
 export function deleteQuiz(quizTitle) {
   const quizArray = getQuizArray(getCurrentUser());
   const updatedQuizzes = quizArray.filter((q) => q.title !== quizTitle);
-  localStorage.setItem(getCurrentUser(), JSON.stringify(updatedQuizzes));
+  localStorage.setItem(
+    `quizzes_${getCurrentUser()}`,
+    JSON.stringify(updatedQuizzes),
+  );
 }

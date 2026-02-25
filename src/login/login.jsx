@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { checkAuth, newUser, setCurrentUser } from "./authHelper.js";
+import { checkAuth, newUser, setCurrentUser } from "../helpers/authHelper.js";
 
 export function Login() {
   const [email, setEmail] = React.useState("");

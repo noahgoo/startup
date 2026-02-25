@@ -13,7 +13,7 @@ import { CreateQuiz } from "./create-quiz/create-quiz";
 import { TakeQuiz } from "./take-quiz/take-quiz";
 import { Login } from "./login/login";
 import { Toast } from "./components/toast";
-import { logoutUser } from "./login/authHelper.js";
+import { logoutUser } from "./helpers/authHelper.js";
 
 function Header() {
   const location = useLocation();
@@ -127,6 +127,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/create-quiz" element={<CreateQuiz />} />
+          <Route path="/create-quiz/:quizId" element={<CreateQuiz />} />
           <Route path="/take-quiz" element={<TakeQuiz />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
