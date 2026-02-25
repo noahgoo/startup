@@ -129,6 +129,7 @@ export default function App() {
           <Route path="/create-quiz" element={<CreateQuiz />} />
           <Route path="/create-quiz/:quizId" element={<CreateQuiz />} />
           <Route path="/take-quiz" element={<TakeQuiz />} />
+          <Route path="/take-quiz/:quizId" element={<TakeQuiz />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 

@@ -12,7 +12,10 @@ export function QuizCard({ quiz }) {
         </h3>
       </div>
       <div className="flex gap-12 justify-center">
-        <button className="text-white bg-teal-700 rounded-lg mt-2 px-6 py-2 hover:bg-teal-500 transition">
+        <button
+          className="text-white bg-teal-700 rounded-lg mt-2 px-6 py-2 hover:bg-teal-500 transition"
+          onClick={() => navigate(`/take-quiz/${quiz.id}`)}
+        >
           Start Quiz
         </button>
         <button

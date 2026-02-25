@@ -51,9 +51,7 @@ export function CreateQuiz() {
     }
     createQuiz(title, questions, quizId);
     alert("Quiz saved!");
-    if (!quizId) {
-      navigate("/dashboard");
-    }
+    navigate("/dashboard");
   };
 
   const handleDeleteQuiz = () => {

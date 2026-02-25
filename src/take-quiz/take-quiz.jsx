@@ -1,6 +1,20 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 export function TakeQuiz() {
+  const { quizId } = useParams();
+
+  if (!quizId) {
+    return (
+      <main className="flex-1 px-6 py-12">
+        <div className="max-w-2xl mx-auto">
+          <p className="text-slate-600 text-center col-span-full">
+            Please choose a quiz form the dashboard to begin your test.
+          </p>
+        </div>
+      </main>
+    );
+  }
   return (
     <main className="flex-1 px-6 py-12">
       <div className="max-w-2xl mx-auto">
