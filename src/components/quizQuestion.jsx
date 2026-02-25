@@ -11,9 +11,9 @@ export function QuizQuestion({ question, answer, onDelete }) {
       <button
         type="button"
         onClick={() => onDelete(question, answer)}
-        className="text-red-500 hover:text-red-700"
+        className="text-red-500 hover:text-red-700 text-lg font-bold"
       >
-        🗑️
+        Delete
       </button>
     </div>
   );

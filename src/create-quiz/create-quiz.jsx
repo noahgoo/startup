@@ -1,7 +1,7 @@
 import React from "react";
-import { createQuiz, getQuizArray } from "../helpers/quizHelper.js";
+import { createQuiz, getQuizArray, deleteQuiz } from "../helpers/quizHelper.js";
 import { QuizQuestion } from "../components/quizQuestion.jsx";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getCurrentUser } from "../helpers/authHelper.js";
 
 export function CreateQuiz() {
@@ -10,6 +10,7 @@ export function CreateQuiz() {
   const [answer, setAnswer] = React.useState("");
   const [questions, setQuestions] = React.useState([]);
   const { quizId } = useParams();
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     if (quizId) {
@@ -50,12 +51,35 @@ export function CreateQuiz() {
     }
     createQuiz(title, questions, quizId);
     alert("Quiz saved!");
+    if (!quizId) {
+      navigate("/dashboard");
+    }
+  };
+
+  const handleDeleteQuiz = () => {
+    if (!quizId) {
+      alert("No quiz to delete.");
+      return;
+    }
+    if (window.confirm("Are you sure you want to delete this quiz?")) {
+      deleteQuiz(quizId);
+      alert("Quiz deleted!");
+      navigate("/dashboard");
+    }
   };
 
   return (
     <main className="flex-1 px-6 py-10">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl font-bold text-slate-800 mb-8">Create Quiz</h2>
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-3xl font-bold text-slate-800">Create Quiz</h2>
+          <button
+            className="text-red-600 border border-red-600 rounded-lg px-4 py-1 hover:bg-red-100 transition"
+            onClick={handleDeleteQuiz}
+          >
+            Delete Quiz
+          </button>
+        </div>
         <div className="bg-white rounded-xl shadow-md p-8 mb-12">
           <form className="space-y-6">
             <div className="mb-8">

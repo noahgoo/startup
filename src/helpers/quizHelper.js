@@ -42,9 +42,9 @@ export function getQuizArray(user) {
   return JSON.parse(localStorage.getItem(`quizzes_${user}`)) || [];
 }
 
-export function deleteQuiz(quizTitle) {
+export function deleteQuiz(quizId) {
   const quizArray = getQuizArray(getCurrentUser());
-  const updatedQuizzes = quizArray.filter((q) => q.title !== quizTitle);
+  const updatedQuizzes = quizArray.filter((q) => q.id !== Number(quizId));
   localStorage.setItem(
     `quizzes_${getCurrentUser()}`,
     JSON.stringify(updatedQuizzes),
