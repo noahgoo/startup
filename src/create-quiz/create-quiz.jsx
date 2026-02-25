@@ -32,6 +32,13 @@ export function CreateQuiz() {
     setAnswer("");
   };
 
+  const handleDeleteQuestion = (question, answer) => {
+    const updatedQuestions = questions.filter(
+      (q) => q.question !== question || q.answer !== answer,
+    );
+    setQuestions(updatedQuestions);
+  };
+
   const handleSaveQuiz = () => {
     if (title.trim() === "") {
       alert("Please enter a quiz title.");
@@ -41,8 +48,8 @@ export function CreateQuiz() {
       alert("Please add at least one question.");
       return;
     }
-    createQuiz(title, questions);
-    alert("Quiz created successfully!");
+    createQuiz(title, questions, quizId);
+    alert("Quiz saved!");
   };
 
   return (
@@ -113,6 +120,7 @@ export function CreateQuiz() {
                 key={index}
                 question={q.question}
                 answer={q.answer}
+                onDelete={handleDeleteQuestion}
               />
             ))}
           </div>
