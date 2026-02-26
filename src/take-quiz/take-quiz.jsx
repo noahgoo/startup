@@ -88,18 +88,23 @@ export function TakeQuiz() {
           showAnswer={showAnswer}
           onCorrect={() => {
             setScore(score + 1);
-            setShowAnswer(true);
-          }}
-          onWrong={() => {
-            setShowAnswer(true);
-          }}
-          onNextQuestion={() => {
             if (currentIndex + 1 >= questionTotal) {
               setFinished(true);
             } else {
               setCurrentIndex(currentIndex + 1);
-              setShowAnswer(false);
             }
+            setShowAnswer(false);
+          }}
+          onWrong={() => {
+            if (currentIndex + 1 >= questionTotal) {
+              setFinished(true);
+            } else {
+              setCurrentIndex(currentIndex + 1);
+            }
+            setShowAnswer(false);
+          }}
+          onNextQuestion={() => {
+            setShowAnswer(true);
           }}
         />
         <div className="bg-gradient-to-r from-teal-50 to-emerald-50 p-8 rounded-xl border border-teal-200">

@@ -14,16 +14,10 @@ export function TestQuestion({
         <h3 className="font-bold mb-6 text-slate-800 text-2xl">{question}</h3>
         <div className="flex gap-6 mb-6">
           <button
-            className="flex-1 bg-emerald-400 hover:bg-emerald-500 text-white px-2 py-2 rounded-lg"
-            onClick={onCorrect}
+            className="w-full bg-teal-700 hover:bg-teal-500 text-white px-4 py-2 rounded-lg transition"
+            onClick={onNextQuestion}
           >
-            Correct
-          </button>
-          <button
-            className="flex-1 bg-red-400 hover:bg-red-500 text-white px-2 py-2 rounded-lg"
-            onClick={onWrong}
-          >
-            Wrong
+            Show Answer
           </button>
         </div>
       </div>
@@ -31,12 +25,20 @@ export function TestQuestion({
         <div className="border-t border-slate-200 pt-8">
           <h4 className="text-sm font-semibold text-slate-700 mb-3">Answer</h4>
           <p className="text-xl font-semibold text-slate-700 mb-6">{answer}</p>
-          <button
-            className="w-full bg-teal-700 hover:bg-teal-500 text-white px-4 py-2 rounded-lg transition"
-            onClick={onNextQuestion}
-          >
-            Next Question
-          </button>
+          <div className="flex gap-6 mb-6">
+            <button
+              className="flex-1 bg-emerald-400 hover:bg-emerald-500 text-white px-2 py-2 rounded-lg"
+              onClick={onCorrect}
+            >
+              Correct
+            </button>
+            <button
+              className="flex-1 bg-red-400 hover:bg-red-500 text-white px-2 py-2 rounded-lg"
+              onClick={onWrong}
+            >
+              Wrong
+            </button>
+          </div>
         </div>
       )}
     </div>
