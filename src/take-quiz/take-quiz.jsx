@@ -1,9 +1,18 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { TestQuestion } from "../components/testQuestion.jsx";
+import { getQuizArray } from "../helpers/quizHelper.js";
+import { getCurrentUser } from "../helpers/authHelper.js";
 
 export function TakeQuiz() {
   const { quizId } = useParams();
+  const quizArray = getQuizArray(getCurrentUser());
+  const quiz = quizArray.find((q) => q.id === Number(quizId));
+  const questions = quiz.questions;
+  const [currentIndex, setCurrentIndex] = React.useState(0);
+  const [score, setScore] = React.useState(0);
+  const barWidth = ((currentIndex + 1) / questions.length) * 100 + "%";
+  const questionTotal = questions.length;
 
   if (!quizId) {
     return (
@@ -23,12 +32,14 @@ export function TakeQuiz() {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-2">
             <span className="text-slate-700 font-medium text-sm">Progress</span>
-            <span className="text-slate-700 text-sm">Question 1 of 3</span>
+            <span className="text-slate-700 text-sm">
+              Question {currentIndex + 1} of {questionTotal}
+            </span>
           </div>
           <div className="w-full bg-slate-300 rounded-full h-2">
             <div
               className="bg-gradient-to-br from-teal-700 to-teal-500 h-2 rounded-full"
-              style={{ width: "33%" }}
+              style={{ width: barWidth }}
             ></div>
           </div>
         </div>

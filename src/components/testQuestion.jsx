@@ -1,15 +1,21 @@
 import React from "react";
 
-export function TestQuestion(question, answer) {
+export function TestQuestion({ question, answer, onCorrect, onWrong }) {
   return (
     <div className="bg-white rounded-xl shadow-md p-8 mb-8">
       <div className="mb-8">
         <h3 className="font-bold mb-6 text-slate-800 text-2xl">{question}</h3>
         <div className="flex gap-6 mb-6">
-          <button className="flex-1 bg-emerald-400 hover:bg-emerald-500 text-white px-2 py-2 rounded-lg">
+          <button
+            className="flex-1 bg-emerald-400 hover:bg-emerald-500 text-white px-2 py-2 rounded-lg"
+            onClick={onCorrect}
+          >
             Correct
           </button>
-          <button className="flex-1 bg-red-400 hover:bg-red-500 text-white px-2 py-2 rounded-lg">
+          <button
+            className="flex-1 bg-red-400 hover:bg-red-500 text-white px-2 py-2 rounded-lg"
+            onClick={onWrong}
+          >
             Wrong
           </button>
         </div>
