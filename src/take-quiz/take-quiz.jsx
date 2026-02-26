@@ -32,7 +32,7 @@ export function TakeQuiz() {
             ></div>
           </div>
         </div>
-        // Test question component goes here
+        {/* Test question component goes here */}
         <div className="bg-gradient-to-r from-teal-50 to-emerald-50 p-8 rounded-xl border border-teal-200">
           <h4 className="text-medium font-semibold text-slate-700 mb-3">
             Motivational Quote
