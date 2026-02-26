@@ -13,6 +13,8 @@ export function TakeQuiz() {
   const [score, setScore] = React.useState(0);
   const barWidth = ((currentIndex + 1) / questions.length) * 100 + "%";
   const questionTotal = questions.length;
+  const currentQuestion = questions[currentIndex].question;
+  const currentAnswer = questions[currentIndex].answer;
 
   if (!quizId) {
     return (
@@ -43,7 +45,7 @@ export function TakeQuiz() {
             ></div>
           </div>
         </div>
-        {/* Test question component goes here */}
+        <TestQuestion question={currentQuestion} answer={currentAnswer} />
         <div className="bg-gradient-to-r from-teal-50 to-emerald-50 p-8 rounded-xl border border-teal-200">
           <h4 className="text-medium font-semibold text-slate-700 mb-3">
             Motivational Quote
