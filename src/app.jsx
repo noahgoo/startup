@@ -14,8 +14,11 @@ import { TakeQuiz } from "./take-quiz/take-quiz";
 import { Login } from "./login/login";
 import { Toast } from "./components/toast";
 import { logoutUser } from "./helpers/authHelper.js";
+import { getCurrentUser } from "./helpers/authHelper.js";
 
 function Header() {
+  const user = getCurrentUser();
+  const userTrimmed = user ? user.split("@")[0] : "user";
   const location = useLocation();
   return location.pathname === "/login" ? (
     // Login page header
@@ -76,7 +79,9 @@ function Header() {
               </NavLink>
             </li>
           </menu>
-          <p className="cool_font text-teal-500 font-medium">Hi [User]!</p>
+          <p className="cool_font text-teal-500 font-medium">
+            Hi {userTrimmed}!
+          </p>
         </nav>
 
         <button id="menu-toggle" className="md:hidden text-2xl text-slate-800">
