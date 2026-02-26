@@ -4,23 +4,44 @@ import { TestQuestion } from "../components/testQuestion.jsx";
 import { getQuizArray } from "../helpers/quizHelper.js";
 import { getCurrentUser } from "../helpers/authHelper.js";
 
+// Mock quotes for later 3rd party API
+const quotes = [
+  { text: "Do. Or do not. There is no Try", author: "Yoda" },
+  {
+    text: "In my experience there is no such thing as luck",
+    author: "Obi-Wan Kenobi",
+  },
+  {
+    text: "The ability to speak does not make you intelligent",
+    author: "Qui-Gon Jinn",
+  },
+  { text: "I find your lack of faith disturbing", author: "Darth Vader" },
+  { text: "Never tell me the odds", author: "Han Solo" },
+  { text: "This is the way", author: "The Mandalorian" },
+];
+
 export function TakeQuiz() {
   const navigate = useNavigate();
   const { quizId } = useParams();
   const quizArray = getQuizArray(getCurrentUser());
-  const quiz = quizArray.find((q) => q.id === Number(quizId));
-  const questions = quiz.questions;
+  const quiz = quizId ? quizArray.find((q) => q.id === Number(quizId)) : null;
+  const questions = quiz ? quiz.questions : [];
+  const [activeQuestions, setActiveQuestions] = React.useState(questions);
+  const [wrongQuestions, setWrongQuestions] = React.useState([]);
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [score, setScore] = React.useState(0);
-  const barWidth = ((currentIndex + 1) / questions.length) * 100 + "%";
-  const questionTotal = questions.length;
-  const currentQuestion = questions[currentIndex].question;
-  const currentAnswer = questions[currentIndex].answer;
-
   const [finished, setFinished] = React.useState(false);
   const [showAnswer, setShowAnswer] = React.useState(false);
+  const [questionTotal, setQuestionTotal] = React.useState(
+    activeQuestions.length,
+  );
 
-  if (!quizId) {
+  // API call mock
+  const [randomQuote] = React.useState(
+    quotes[Math.floor(Math.random() * quotes.length)],
+  );
+
+  if (!quizId || !quiz) {
     return (
       <main className="flex-1 px-6 py-12">
         <div className="max-w-2xl mx-auto">
@@ -30,7 +51,11 @@ export function TakeQuiz() {
         </div>
       </main>
     );
-  } else if (finished) {
+  }
+  const barWidth = ((currentIndex + 1) / activeQuestions.length) * 100 + "%";
+  const currentQuestion = activeQuestions[currentIndex].question;
+  const currentAnswer = activeQuestions[currentIndex].answer;
+  if (finished) {
     return (
       <main className="flex-1 px-6 py-12">
         <div className="max-w-2xl mx-auto">
@@ -59,6 +84,26 @@ export function TakeQuiz() {
                   ? "Nice work!"
                   : "Keep practicing!"}
             </p>
+          </div>
+          <div className="flex justify-center">
+            <button
+              className="bg-teal-700 hover:bg-teal-500 text-white px-4 py-2 rounded-lg"
+              onClick={() => {
+                if (wrongQuestions.length > 0) {
+                  setActiveQuestions(wrongQuestions);
+                  setWrongQuestions([]);
+                  setCurrentIndex(0);
+                  setScore(0);
+                  setFinished(false);
+                  setQuestionTotal(wrongQuestions.length);
+                } else {
+                  alert("No questions to redo!");
+                  navigate("/dashboard");
+                }
+              }}
+            >
+              Redo Missed Questions
+            </button>
           </div>
         </div>
       </main>
@@ -96,6 +141,10 @@ export function TakeQuiz() {
             setShowAnswer(false);
           }}
           onWrong={() => {
+            setWrongQuestions([
+              ...wrongQuestions,
+              activeQuestions[currentIndex],
+            ]);
             if (currentIndex + 1 >= questionTotal) {
               setFinished(true);
             } else {
@@ -113,9 +162,9 @@ export function TakeQuiz() {
           </h4>
 
           <p className="text-lg text-slate-700 italic mb-4">
-            “Education is the key that unlocks the golden door to freedom.”
+            {randomQuote.text}
           </p>
-          <p className="text-sm text-slate-700">– George Washington Carver</p>
+          <p className="text-sm text-slate-700">– {randomQuote.author}</p>
         </div>
       </div>
     </main>
