@@ -18,6 +18,7 @@ export function TakeQuiz() {
   const currentAnswer = questions[currentIndex].answer;
 
   const [finished, setFinished] = React.useState(false);
+  const [showAnswer, setShowAnswer] = React.useState(false);
 
   if (!quizId) {
     return (
@@ -84,19 +85,20 @@ export function TakeQuiz() {
         <TestQuestion
           question={currentQuestion}
           answer={currentAnswer}
+          showAnswer={showAnswer}
           onCorrect={() => {
             setScore(score + 1);
-            if (currentIndex + 1 >= questionTotal) {
-              setFinished(true);
-            } else {
-              setCurrentIndex(currentIndex + 1);
-            }
+            setShowAnswer(true);
           }}
           onWrong={() => {
+            setShowAnswer(true);
+          }}
+          onNextQuestion={() => {
             if (currentIndex + 1 >= questionTotal) {
               setFinished(true);
             } else {
               setCurrentIndex(currentIndex + 1);
+              setShowAnswer(false);
             }
           }}
         />

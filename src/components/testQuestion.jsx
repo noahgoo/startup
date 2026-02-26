@@ -1,6 +1,13 @@
 import React from "react";
 
-export function TestQuestion({ question, answer, onCorrect, onWrong }) {
+export function TestQuestion({
+  question,
+  answer,
+  showAnswer,
+  onCorrect,
+  onWrong,
+  onNextQuestion,
+}) {
   return (
     <div className="bg-white rounded-xl shadow-md p-8 mb-8">
       <div className="mb-8">
@@ -20,13 +27,18 @@ export function TestQuestion({ question, answer, onCorrect, onWrong }) {
           </button>
         </div>
       </div>
-      <div className="border-t border-slate-200 pt-8">
-        <h4 className="text-sm font-semibold text-slate-700 mb-3">Answer</h4>
-        <p className="text-xl font-semibold text-slate-700 mb-6">{answer}</p>
-        <button className="w-full bg-teal-700 hover:bg-teal-500 text-white px-4 py-2 rounded-lg transition">
-          Next Question
-        </button>
-      </div>
+      {showAnswer && (
+        <div className="border-t border-slate-200 pt-8">
+          <h4 className="text-sm font-semibold text-slate-700 mb-3">Answer</h4>
+          <p className="text-xl font-semibold text-slate-700 mb-6">{answer}</p>
+          <button
+            className="w-full bg-teal-700 hover:bg-teal-500 text-white px-4 py-2 rounded-lg transition"
+            onClick={onNextQuestion}
+          >
+            Next Question
+          </button>
+        </div>
+      )}
     </div>
   );
 }
