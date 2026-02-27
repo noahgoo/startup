@@ -17,6 +17,8 @@ import { logoutUser } from "./helpers/authHelper.js";
 import { getCurrentUser } from "./helpers/authHelper.js";
 
 function Header() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
   const user = getCurrentUser();
   const userTrimmed = user ? user.split("@")[0] : "user";
   const location = useLocation();
@@ -84,39 +86,57 @@ function Header() {
           </p>
         </nav>
 
-        <button id="menu-toggle" className="md:hidden text-2xl text-slate-800">
+        <button
+          className="md:hidden text-2xl text-slate-800"
+          onClick={() => {
+            if (isOpen) {
+              setIsOpen(false);
+            } else {
+              setIsOpen(true);
+            }
+          }}
+        >
           ☰
         </button>
       </div>
-      <div
-        id="mobile-menu"
-        className="hidden md:hidden mt-4 pb-4 border-t border-slate-200"
-      >
-        <nav className="flex flex-col gap-4 pt-4">
-          <NavLink
-            to="/dashboard"
-            className="text-slate-700 hover:text-teal-500"
-          >
-            Dashboard
-          </NavLink>
-          <NavLink
-            to="/create-quiz"
-            className="text-slate-700 hover:text-teal-500"
-          >
-            Create Quiz
-          </NavLink>
-          <NavLink
-            to="/take-quiz"
-            className="text-slate-700 hover:text-teal-500"
-          >
-            Take Quiz
-          </NavLink>
-          <NavLink to="/login" className="text-slate-700 hover:text-teal-500">
-            Logout
-          </NavLink>
-          <p className="text-teal-500 font-medium">Hi [User]!</p>
-        </nav>
-      </div>
+      {/* Dropdown Menu */}
+      {isOpen && (
+        <div className="mt-4 pb-4 border-t border-slate-200">
+          <nav className="flex flex-col gap-4 pt-4 text-right mx-4">
+            <NavLink
+              to="/dashboard"
+              className="text-slate-700 hover:text-teal-500"
+              onClick={() => setIsOpen(false)}
+            >
+              Dashboard
+            </NavLink>
+            <NavLink
+              to="/create-quiz"
+              className="text-slate-700 hover:text-teal-500"
+              onClick={() => setIsOpen(false)}
+            >
+              Create Quiz
+            </NavLink>
+            <NavLink
+              to="/take-quiz"
+              className="text-slate-700 hover:text-teal-500"
+              onClick={() => setIsOpen(false)}
+            >
+              Take Quiz
+            </NavLink>
+            <NavLink
+              to="/login"
+              className="text-slate-700 hover:text-teal-500"
+              onClick={() => setIsOpen(false)}
+            >
+              Logout
+            </NavLink>
+            <p className="cool_font text-teal-500 font-medium">
+              Hi {userTrimmed}!
+            </p>
+          </nav>
+        </div>
+      )}
     </header>
   );
 }
