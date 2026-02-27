@@ -105,6 +105,16 @@ export function TakeQuiz() {
               Redo Missed Questions
             </button>
           </div>
+          <div className="mt-8 bg-gradient-to-r from-teal-50 to-emerald-50 p-8 rounded-xl border border-teal-200">
+            <h4 className="text-medium font-semibold text-slate-700 mb-3">
+              Motivational Quote
+            </h4>
+
+            <p className="text-lg text-slate-700 italic mb-4">
+              {randomQuote.text}
+            </p>
+            <p className="text-sm text-slate-700">– {randomQuote.author}</p>
+          </div>
         </div>
       </main>
     );
@@ -156,16 +166,6 @@ export function TakeQuiz() {
             setShowAnswer(true);
           }}
         />
-        <div className="bg-gradient-to-r from-teal-50 to-emerald-50 p-8 rounded-xl border border-teal-200">
-          <h4 className="text-medium font-semibold text-slate-700 mb-3">
-            Motivational Quote
-          </h4>
-
-          <p className="text-lg text-slate-700 italic mb-4">
-            {randomQuote.text}
-          </p>
-          <p className="text-sm text-slate-700">– {randomQuote.author}</p>
-        </div>
       </div>
     </main>
   );
