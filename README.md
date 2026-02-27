@@ -72,7 +72,16 @@ Below is a simple sequence diagram for completing a quiz or editing/creating a q
 
 ## React Phase 1
 
-- [x] I completed the prerequesites and deployed the React version of Simon to production.
+- [x] I completed the prerequisites and deployed the React version of Simon to production.
 - [x] Installed required packages including vite, react, and tailwindcss.
 - [x] Transferred my html pages into jsx components for login, take-quiz, create-quiz, dashboard, and toast.
 - [x] Added router between all different pages.
+
+## React Phase 2
+
+- [x] Completed all prerequisites (Simon deployed, git commits, GitHub link).
+- [x] Mocked out functionality for database, 3rd party API, and WebSocket.
+- [x] Used `useState` effects on multiple components including app, take-quiz, create-quiz, and toast. Used `useEffect` in toast and create-quiz.
+- [x] Created logic for creating quizzes/questions, deleting quizzes/questions, running through a test for a quiz, redoing missed questions, and progress bar indicator.
+- [x] Fleshed out login page to register and login users, buttons now function to take user to dashboard.
+- [x] Implemented navbar for hamburger button for mobile use.
