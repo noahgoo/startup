@@ -5,7 +5,6 @@ import { getQuizArray } from "../helpers/quizHelper.js";
 import { getCurrentUser } from "../helpers/authHelper.js";
 
 export function Dashboard() {
-  const navigate = useNavigate();
   const user = getCurrentUser();
   const quizzes = getQuizArray(user);
 
