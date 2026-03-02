@@ -40,3 +40,16 @@
 - React keeps a table of states for components, that is what determines what gets rendered
 - Update states happens asynchonously
 - localStorage is an API to access browser's storage, can be used for caching. Use getItem, setItem, removeItem, clear. Must be type number, string or boolean.
+
+## Service
+
+- The 3 states of a `Promise` are **pending, fulfilled,** and **rejected**.
+- The promise executor function takes in two function parameters `resolve` and `reject`. Calling them sets promise to `fulfilled` or `rejected`.
+- Promise object has 3 functions: `then`, `catch`, and `finally`. Relate to when fulfilled, rejected, and after all processing.
+- You can create asynchronous code using `async` which defines functions to return promises, and `await` which waits on the promise.
+- `let` allows you to change variable value later while `const` doesn't.
+- `===` is a strict equality on data value and type.
+- If using `for in` on an array, the object's name is the array index. `for of` will iterate over array's property values.
+- `rest` allows you to turn unknow number of last parameters into an array. `(test, ...numbers)` Spread does the opposite.
+- Monolithic web server is everything in one machine, web services are just parts separated but working together, and serverless is just waiting for incoming requests and then responding accordingly (easy for scaling).
+-
