@@ -52,4 +52,11 @@
 - If using `for in` on an array, the object's name is the array index. `for of` will iterate over array's property values.
 - `rest` allows you to turn unknow number of last parameters into an array. `(test, ...numbers)` Spread does the opposite.
 - Monolithic web server is everything in one machine, web services are just parts separated but working together, and serverless is just waiting for incoming requests and then responding accordingly (easy for scaling).
--
+- HTTP is a common way of communication for APIs
+- Cookie's are how server and client can track across requests.
+- Fetch is used to make HTTP request (call API) in JavaScript on the frontend.
+
+# Web Service
+
+- Divided into multiple service endpoints.
+- REST HTTP verb always acts on a resource.
