@@ -7,7 +7,7 @@ const app = express();
 const authCookieName = "token";
 
 // Put quizzes and users in memory
-let quizzes = [];
+let quizzes = {};
 let users = [];
 
 // Service port and middleware
@@ -26,8 +26,12 @@ app.use(cookieParser());
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
+// -------------------------------
+// API routes
+// -------------------------------
+
 // Create a new user
-apiRouter.post("auth/create", async (req, res) => {
+apiRouter.post("/auth/create", async (req, res) => {
   if (await findUser("email", req.body.email)) {
     res.status(409).send({ msg: "User already exists" });
   } else {
@@ -39,10 +43,10 @@ apiRouter.post("auth/create", async (req, res) => {
 });
 
 // Login existing user
-apiRouter.post("auth/login", async (req, res) => {
+apiRouter.post("/auth/login", async (req, res) => {
   const user = await findUser("email", req.body.email);
   if (user) {
-    if (await bcrypt.compare(user.password, req.body.password)) {
+    if (await bcrypt.compare(req.body.password, user.password)) {
       user.token = uuid.v4();
       setAuthCookie(res, user.token);
       res.send({ email: user.email });
@@ -53,7 +57,7 @@ apiRouter.post("auth/login", async (req, res) => {
 });
 
 // Logout a user
-apiRouter.delete("auth/logout", async (req, res) => {
+apiRouter.delete("/auth/logout", async (req, res) => {
   const user = await findUser("email", req.body.email);
   if (user) {
     delete user.token;
@@ -62,15 +66,46 @@ apiRouter.delete("auth/logout", async (req, res) => {
   res.status(204).end();
 });
 
-// Middleware to verify auth
-const verifyAuth = async (req, res, next) => {
-  const user = await findUser("token", req.cookies[authCookieName]);
-  if (user) {
-    next();
+// Create quiz array
+apiRouter.post("/quiz/create", verifyAuth, async (req, res) => {
+  const quizArray = getQuizArray(req.body.email);
+  // Check if quiz already exists and just need to be updated
+  if (req.body.quizId) {
+    const index = quizArray.findIndex((q) => q.id === Number(req.body.quizId));
+    if (index !== -1) {
+      quizArray[index] = {
+        id: Number(req.body.quizId),
+        title: req.body.title,
+        questions: req.body.questions,
+      };
+    }
   } else {
-    res.status(401).send({ msg: "Unauthorized" });
+    quizArray.push({
+      id: Date.now(),
+      title: req.body.title,
+      questions: req.body.questions,
+    });
   }
-};
+  createQuiz(req.body.email, quizArray);
+  res
+    .status(200)
+    .json({ id: req.body.quizId || quizArray[quizArray.length - 1].id });
+});
+
+// Get quiz array
+apiRouter.get("/quiz/get", verifyAuth, async (req, res) => {
+  res.status(200).json(getQuizArray(req.query.email));
+});
+
+// Delete quiz
+apiRouter.delete("/quiz/delete", verifyAuth, async (req, res) => {
+  const quizArray = getQuizArray(req.body.email);
+  const updatedQuizzes = quizArray.filter(
+    (q) => q.id !== Number(req.body.quizId),
+  );
+  createQuiz(req.body.email, updatedQuizzes);
+  res.status(204).end();
+});
 
 // Default error handler
 app.use(function (err, req, res, next) {
@@ -81,6 +116,20 @@ app.use(function (err, req, res, next) {
 app.use((_req, res) => {
   res.sendFile("index.html", { root: "public" });
 });
+
+// -------------------------------
+// Helper functions
+// -------------------------------
+
+// Middleware to verify auth
+const verifyAuth = async (req, res, next) => {
+  const user = await findUser("token", req.cookies[authCookieName]);
+  if (user) {
+    next();
+  } else {
+    res.status(401).send({ msg: "Unauthorized" });
+  }
+};
 
 // Find user in storage
 async function findUser(field, value) {
@@ -98,6 +147,7 @@ async function createUser(email, password) {
     password: hashPass,
     token: uuid.v4(),
   };
+  users.push(user);
   return user;
 }
 
@@ -110,3 +160,17 @@ function setAuthCookie(res, token) {
     sameSite: "strict",
   });
 }
+
+// Create quiz
+function createQuiz(email, quizArray) {
+  quizzes[email] = quizArray;
+}
+
+// Get quiz array
+function getQuizArray(email) {
+  return quizzes[email] || [];
+}
+
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
