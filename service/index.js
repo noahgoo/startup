@@ -38,6 +38,50 @@ apiRouter.post("auth/create", async (req, res) => {
   }
 });
 
+// Login existing user
+apiRouter.post("auth/login", async (req, res) => {
+  const user = await findUser("email", req.body.email);
+  if (user) {
+    if (await bcrypt.compare(user.password, req.body.password)) {
+      user.token = uuid.v4();
+      setAuthCookie(res, user.token);
+      res.send({ email: user.email });
+      return;
+    }
+  }
+  return res.status(401).send({ msg: "No user found" });
+});
+
+// Logout a user
+apiRouter.delete("auth/logout", async (req, res) => {
+  const user = await findUser("email", req.body.email);
+  if (user) {
+    delete user.token;
+  }
+  res.clearCookie(authCookieName);
+  res.status(204).end();
+});
+
+// Middleware to verify auth
+const verifyAuth = async (req, res, next) => {
+  const user = await findUser("token", req.cookies[authCookieName]);
+  if (user) {
+    next();
+  } else {
+    res.status(401).send({ msg: "Unauthorized" });
+  }
+};
+
+// Default error handler
+app.use(function (err, req, res, next) {
+  res.status(500).send({ type: err.name, message: err.message });
+});
+
+// Return the application's default page if the path is unknown
+app.use((_req, res) => {
+  res.sendFile("index.html", { root: "public" });
+});
+
 // Find user in storage
 async function findUser(field, value) {
   if (!value) return null;
