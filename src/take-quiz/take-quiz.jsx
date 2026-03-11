@@ -4,22 +4,6 @@ import { TestQuestion } from "../components/testQuestion.jsx";
 import { getQuizArray } from "../helpers/quizHelper.js";
 import { getCurrentUser } from "../helpers/authHelper.js";
 
-// Mock quotes for later 3rd party API
-const quotes = [
-  { text: "Do. Or do not. There is no Try", author: "Yoda" },
-  {
-    text: "In my experience there is no such thing as luck",
-    author: "Obi-Wan Kenobi",
-  },
-  {
-    text: "The ability to speak does not make you intelligent",
-    author: "Qui-Gon Jinn",
-  },
-  { text: "I find your lack of faith disturbing", author: "Darth Vader" },
-  { text: "Never tell me the odds", author: "Han Solo" },
-  { text: "This is the way", author: "The Mandalorian" },
-];
-
 export function TakeQuiz() {
   const navigate = useNavigate();
   const { quizId } = useParams();
@@ -35,11 +19,18 @@ export function TakeQuiz() {
   const [questionTotal, setQuestionTotal] = React.useState(
     activeQuestions.length,
   );
+  const [randomQuote, setRandomQuote] = React.useState(null);
 
-  // API call mock
-  const [randomQuote] = React.useState(
-    quotes[Math.floor(Math.random() * quotes.length)],
-  );
+  // 3rd party API quote
+  React.useEffect(() => {
+    // Call dummyjson API for a random quote
+    fetch("https://dummyjson.com/quotes/random")
+      .then((response) => response.json())
+      .then((data) => {
+        setRandomQuote({ text: data.quote, author: data.author });
+      })
+      .catch((err) => console.error("Quote fetch failed:", err));
+  }, []);
 
   if (!quizId || !quiz) {
     return (
