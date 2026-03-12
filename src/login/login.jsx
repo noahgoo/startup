@@ -1,34 +1,36 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { checkAuth, newUser, setCurrentUser } from "../helpers/authHelper.js";
 
 export function Login() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const navigate = useNavigate();
 
-  function loginUser() {
-    // check if user is in local storage
-    if (checkAuth(email, password)) {
-      setCurrentUser(email);
+  // Login user with API call
+  async function loginUser() {
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json; charset=UTF-8" },
+      body: JSON.stringify({ email, password }),
+    });
+    if (res.ok) {
       navigate("/dashboard");
     } else {
       alert("Invalid email or password. Please try again.");
     }
   }
 
-  function createUser() {
-    // create a new user in local storage
-    if (email === "" || password === "") {
-      alert("Email and password cannot be empty.");
-      return;
-    } else if (localStorage.getItem(email)) {
-      alert("User already exists. Please log in.");
-      return;
-    } else {
-      newUser(email, password);
-      setCurrentUser(email);
+  // Create new user with API call
+  async function createUser() {
+    const res = await fetch("/api/auth/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json; charset=UTF-8" },
+      body: JSON.stringify({ email, password }),
+    });
+    if (res.ok) {
       navigate("/dashboard");
+    } else if (res.status === 409) {
+      alert("User already exists. Please log in.");
     }
   }
 

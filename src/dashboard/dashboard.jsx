@@ -1,12 +1,16 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { QuizCard } from "../components/quizCard.jsx";
-import { getQuizArray } from "../helpers/quizHelper.js";
-import { getCurrentUser } from "../helpers/authHelper.js";
 
 export function Dashboard() {
-  const user = getCurrentUser();
-  const quizzes = getQuizArray(user);
+  const [quizzes, setQuizzes] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch("/api/quiz/get")
+      .then((res) => res.json())
+      .then((data) => setQuizzes(data))
+      .catch((err) => console.error("Error fetching quizzes:", err));
+  }, []);
 
   return (
     <main className="flex1 px-6 py-10">
