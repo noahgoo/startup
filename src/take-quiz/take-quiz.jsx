@@ -1,16 +1,12 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { TestQuestion } from "../components/testQuestion.jsx";
-import { getQuizArray } from "../helpers/quizHelper.js";
-import { getCurrentUser } from "../helpers/authHelper.js";
 
 export function TakeQuiz() {
   const navigate = useNavigate();
   const { quizId } = useParams();
-  const quizArray = getQuizArray(getCurrentUser());
-  const quiz = quizId ? quizArray.find((q) => q.id === Number(quizId)) : null;
-  const questions = quiz ? quiz.questions : [];
-  const [activeQuestions, setActiveQuestions] = React.useState(questions);
+  const [quizArray, setQuizArray] = React.useState([]);
+  const [activeQuestions, setActiveQuestions] = React.useState([]);
   const [wrongQuestions, setWrongQuestions] = React.useState([]);
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [score, setScore] = React.useState(0);
@@ -20,6 +16,20 @@ export function TakeQuiz() {
     activeQuestions.length,
   );
   const [randomQuote, setRandomQuote] = React.useState(null);
+
+  // Get quiz info
+  React.useEffect(() => {
+    fetch("/api/quiz/get")
+      .then((res) => res.json())
+      .then((data) => {
+        setQuizArray(data);
+        const existing = data.find((q) => q.id === Number(quizId));
+        if (existing) {
+          setActiveQuestions(existing.questions);
+          setQuestionTotal(existing.questions.length);
+        }
+      });
+  }, []);
 
   // 3rd party API quote
   React.useEffect(() => {
@@ -32,7 +42,7 @@ export function TakeQuiz() {
       .catch((err) => console.error("Quote fetch failed:", err));
   }, []);
 
-  if (!quizId || !quiz) {
+  if (!quizId || quizArray.length === 0) {
     return (
       <main className="flex-1 px-6 py-12">
         <div className="max-w-2xl mx-auto">
