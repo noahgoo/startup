@@ -1,8 +1,6 @@
 import React from "react";
-import { createQuiz, getQuizArray, deleteQuiz } from "../helpers/quizHelper.js";
 import { QuizQuestion } from "../components/quizQuestion.jsx";
 import { useNavigate, useParams } from "react-router-dom";
-import { getCurrentUser } from "../helpers/authHelper.js";
 
 export function CreateQuiz() {
   const [title, setTitle] = React.useState("");
@@ -14,12 +12,15 @@ export function CreateQuiz() {
 
   React.useEffect(() => {
     if (quizId) {
-      const quizzes = getQuizArray(getCurrentUser());
-      const existing = quizzes.find((q) => q.id === Number(quizId));
-      if (existing) {
-        setTitle(existing.title);
-        setQuestions(existing.questions);
-      }
+      fetch("/api/quiz/get")
+        .then((res) => res.json())
+        .then((data) => {
+          const existing = data.find((q) => q.id === Number(quizId));
+          if (existing) {
+            setTitle(existing.title);
+            setQuestions(existing.questions);
+          }
+        });
     }
   }, [quizId]);
 
@@ -40,7 +41,7 @@ export function CreateQuiz() {
     setQuestions(updatedQuestions);
   };
 
-  const handleSaveQuiz = () => {
+  const handleSaveQuiz = async () => {
     if (title.trim() === "") {
       alert("Please enter a quiz title.");
       return;
@@ -49,18 +50,26 @@ export function CreateQuiz() {
       alert("Please add at least one question.");
       return;
     }
-    createQuiz(title, questions, quizId);
+    await fetch("/api/quiz/create", {
+      method: "POST",
+      headers: { "Content-Type": "application/json; charset=UTF-8" },
+      body: JSON.stringify({ title, questions, quizId }),
+    });
     alert("Quiz saved!");
     navigate("/dashboard");
   };
 
-  const handleDeleteQuiz = () => {
+  const handleDeleteQuiz = async () => {
     if (!quizId) {
       alert("No quiz to delete.");
       return;
     }
     if (window.confirm("Are you sure you want to delete this quiz?")) {
-      deleteQuiz(quizId);
+      await fetch("/api/quiz/delete", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json; charset=UTF-8" },
+        body: JSON.stringify({ quizId }),
+      });
       alert("Quiz deleted!");
       navigate("/dashboard");
     }
