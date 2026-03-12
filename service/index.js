@@ -26,6 +26,17 @@ app.use(cookieParser());
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
+// Middleware to verify auth
+const verifyAuth = async (req, res, next) => {
+  const user = await findUser("token", req.cookies[authCookieName]);
+  if (user) {
+    req.user = user;
+    next();
+  } else {
+    res.status(401).send({ msg: "Unauthorized" });
+  }
+};
+
 // -------------------------------
 // API routes
 // -------------------------------
@@ -68,7 +79,7 @@ apiRouter.delete("/auth/logout", async (req, res) => {
 
 // Create quiz array
 apiRouter.post("/quiz/create", verifyAuth, async (req, res) => {
-  const quizArray = getQuizArray(req.body.email);
+  const quizArray = getQuizArray(req.user.email);
   // Check if quiz already exists and just need to be updated
   if (req.body.quizId) {
     const index = quizArray.findIndex((q) => q.id === Number(req.body.quizId));
@@ -86,7 +97,7 @@ apiRouter.post("/quiz/create", verifyAuth, async (req, res) => {
       questions: req.body.questions,
     });
   }
-  createQuiz(req.body.email, quizArray);
+  createQuiz(req.user.email, quizArray);
   res
     .status(200)
     .json({ id: req.body.quizId || quizArray[quizArray.length - 1].id });
@@ -94,16 +105,16 @@ apiRouter.post("/quiz/create", verifyAuth, async (req, res) => {
 
 // Get quiz array
 apiRouter.get("/quiz/get", verifyAuth, async (req, res) => {
-  res.status(200).json(getQuizArray(req.query.email));
+  res.status(200).json(getQuizArray(req.user.email));
 });
 
 // Delete quiz
 apiRouter.delete("/quiz/delete", verifyAuth, async (req, res) => {
-  const quizArray = getQuizArray(req.body.email);
+  const quizArray = getQuizArray(req.user.email);
   const updatedQuizzes = quizArray.filter(
     (q) => q.id !== Number(req.body.quizId),
   );
-  createQuiz(req.body.email, updatedQuizzes);
+  createQuiz(req.user.email, updatedQuizzes);
   res.status(204).end();
 });
 
@@ -120,16 +131,6 @@ app.use((_req, res) => {
 // -------------------------------
 // Helper functions
 // -------------------------------
-
-// Middleware to verify auth
-const verifyAuth = async (req, res, next) => {
-  const user = await findUser("token", req.cookies[authCookieName]);
-  if (user) {
-    next();
-  } else {
-    res.status(401).send({ msg: "Unauthorized" });
-  }
-};
 
 // Find user in storage
 async function findUser(field, value) {
