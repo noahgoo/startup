@@ -7,21 +7,40 @@ import {
   Routes,
   useLocation,
   Navigate,
+  useNavigate,
 } from "react-router-dom";
 import { Dashboard } from "./dashboard/dashboard";
 import { CreateQuiz } from "./create-quiz/create-quiz";
 import { TakeQuiz } from "./take-quiz/take-quiz";
 import { Login } from "./login/login";
 import { Toast } from "./components/toast";
-import { logoutUser } from "./helpers/authHelper.js";
-import { getCurrentUser } from "./helpers/authHelper.js";
 
 function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
-
-  const user = getCurrentUser();
+  const navigate = useNavigate();
+  const [user, setUser] = React.useState(null);
   const userTrimmed = user ? user.split("@")[0] : "user";
   const location = useLocation();
+
+  React.useEffect(() => {
+    fetch("/api/auth/me")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => setUser(data ? data.email : null))
+      .catch(() => setUser(null));
+  }, [location]);
+
+  async function logoutUser() {
+    const res = await fetch("/api/auth/logout", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json; charset=UTF-8" },
+    });
+    if (res.ok) {
+      navigate("/login");
+    } else {
+      alert("Error logging out. Please try again.");
+    }
+  }
+
   return location.pathname === "/login" ? (
     // Login page header
     <header className="py-12 px-4 border-b border-slate-200">

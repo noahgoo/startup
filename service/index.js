@@ -77,6 +77,11 @@ apiRouter.delete("/auth/logout", async (req, res) => {
   res.status(204).end();
 });
 
+// Get current user
+apiRouter.get("/auth/me", verifyAuth, async (req, res) => {
+  res.send({ email: req.user.email });
+});
+
 // Create quiz array
 apiRouter.post("/quiz/create", verifyAuth, async (req, res) => {
   const quizArray = getQuizArray(req.user.email);
