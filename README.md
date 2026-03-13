@@ -85,3 +85,13 @@ Below is a simple sequence diagram for completing a quiz or editing/creating a q
 - [x] Created logic for creating quizzes/questions, deleting quizzes/questions, running through a test for a quiz, redoing missed questions, and progress bar indicator.
 - [x] Fleshed out login page to register and login users, buttons now function to take user to dashboard.
 - [x] Implemented navbar for hamburger button for mobile use.
+
+## Service
+
+- [x] Completed all pregrequisites (Simon deployed, commits)
+- [x] Node.js/Express setup for service part.
+- [x] Static middleware for frontend.
+- [x] 3rd party API call to dummyjson to get inspirational quote.
+- [x] Created backend endpoints, stores auth and quizzes on the server.
+- [x] Frontend calls endpoints using `fetch` for all auth and quiz creation/retrieval.
+- [x] Uses Bcrypt to encrypt passwords.
