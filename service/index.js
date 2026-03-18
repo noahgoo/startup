@@ -3,12 +3,9 @@ const bcrypt = require("bcryptjs");
 const express = require("express");
 const uuid = require("uuid");
 const app = express();
+const DB = require("./database.js");
 
 const authCookieName = "token";
-
-// Put quizzes and users in memory
-let quizzes = {};
-let users = [];
 
 // Service port and middleware
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -138,7 +135,10 @@ app.use((_req, res) => {
 async function findUser(field, value) {
   if (!value) return null;
 
-  return users.find((u) => u[field] == value);
+  if (field === 'token') {
+    return DB.getUserByToken(value);
+  }
+  return DB.getUser(value);
 }
 
 // Create user in storage

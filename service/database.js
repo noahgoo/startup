@@ -5,8 +5,9 @@ const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostna
 
 // Connect to the database cluster
 const client = new MongoClient(url);
-const db = client.db("rental");
-const collection = db.collection("house");
+const db = client.db("startup");
+const userCollection = db.collection("users");
+const quizCollection = db.collection("quizzes");
 
 // Test connection to database asynchronously
 (async function testConnection() {
@@ -21,6 +22,15 @@ const collection = db.collection("house");
   }
 })();
 
+function getUser(email) {
+  return userCollection.findOne({ email: email });
+}
 
+function getUserByToken(token) {
+  return userCollection.findOne({ token: token });
+}
 
-module.exports = {};
+module.exports = {
+  getUser,
+  getUserByToken,
+};
