@@ -56,6 +56,7 @@ apiRouter.post("/auth/login", async (req, res) => {
   if (user) {
     if (await bcrypt.compare(req.body.password, user.password)) {
       user.token = uuid.v4();
+      await DB.updateUser(user);
       setAuthCookie(res, user.token);
       res.send({ email: user.email });
       return;
@@ -131,17 +132,17 @@ app.use((_req, res) => {
 // Helper functions
 // -------------------------------
 
-// Find user in storage
+// Find user
 async function findUser(field, value) {
   if (!value) return null;
 
-  if (field === 'token') {
+  if (field === "token") {
     return DB.getUserByToken(value);
   }
   return DB.getUser(value);
 }
 
-// Create user in storage
+// Create user
 async function createUser(email, password) {
   const hashPass = await bcrypt.hash(password, 12);
 
@@ -150,7 +151,8 @@ async function createUser(email, password) {
     password: hashPass,
     token: uuid.v4(),
   };
-  users.push(user);
+  await DB.addUser(user);
+
   return user;
 }
 
