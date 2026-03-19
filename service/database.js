@@ -31,14 +31,38 @@ function getUserByToken(token) {
 }
 
 async function addUser(user) {
-    await userCollection.insertOne(user);
+  await userCollection.insertOne(user);
 }
 
 async function updateUser(user) {
-    await userCollection.updateOne({ email: user.email }, { $set: user });
+  await userCollection.updateOne({ email: user.email }, { $set: user });
+}
+
+async function updateUserRemoveAuth(user) {
+  await userCollection.updateOne({ email: user.email }, { $set: user });
+}
+
+// Quizzes
+
+function getQuiz(email) {
+  return quizCollection.findOne({ email: email });
+}
+
+async function addQuiz(quizSet) {
+  await quizCollection.insertOne(quizSet);
+}
+
+async function updateQuiz(quizSet) {
+  await quizCollection.updateOne({ email: quizSet.email }, { $set: quizSet });
 }
 
 module.exports = {
   getUser,
   getUserByToken,
+  addUser,
+  updateUser,
+  updateUserRemoveAuth,
+  getQuiz,
+  addQuiz,
+  updateQuiz,
 };

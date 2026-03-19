@@ -67,7 +67,11 @@ apiRouter.post("/auth/login", async (req, res) => {
 
 // Logout a user
 apiRouter.delete("/auth/logout", async (req, res) => {
-  delete req.user.token;
+  const user = await findUser("token", req.cookies[authCookieName]);
+  if (user) {
+    delete user.token;
+    await DB.updateUserRemoveAuth(user);
+  }
   res.clearCookie(authCookieName);
   res.status(204).end();
 });
@@ -79,7 +83,7 @@ apiRouter.get("/auth/me", verifyAuth, async (req, res) => {
 
 // Create quiz array
 apiRouter.post("/quiz/create", verifyAuth, async (req, res) => {
-  const quizArray = getQuizArray(req.user.email);
+  const quizArray = await getQuizArray(req.user.email);
   // Check if quiz already exists and just need to be updated
   if (req.body.quizId) {
     const index = quizArray.findIndex((q) => q.id === Number(req.body.quizId));
@@ -97,7 +101,7 @@ apiRouter.post("/quiz/create", verifyAuth, async (req, res) => {
       questions: req.body.questions,
     });
   }
-  createQuiz(req.user.email, quizArray);
+  await createQuiz(req.user.email, quizArray);
   res
     .status(200)
     .json({ id: req.body.quizId || quizArray[quizArray.length - 1].id });
@@ -105,16 +109,16 @@ apiRouter.post("/quiz/create", verifyAuth, async (req, res) => {
 
 // Get quiz array
 apiRouter.get("/quiz/get", verifyAuth, async (req, res) => {
-  res.status(200).json(getQuizArray(req.user.email));
+  res.status(200).json(await getQuizArray(req.user.email));
 });
 
 // Delete quiz
 apiRouter.delete("/quiz/delete", verifyAuth, async (req, res) => {
-  const quizArray = getQuizArray(req.user.email);
+  const quizArray = await getQuizArray(req.user.email);
   const updatedQuizzes = quizArray.filter(
     (q) => q.id !== Number(req.body.quizId),
   );
-  createQuiz(req.user.email, updatedQuizzes);
+  await createQuiz(req.user.email, updatedQuizzes);
   res.status(204).end();
 });
 
@@ -167,13 +171,23 @@ function setAuthCookie(res, token) {
 }
 
 // Create quiz
-function createQuiz(email, quizArray) {
-  quizzes[email] = quizArray;
+async function createQuiz(email, quizArray) {
+  const existing = await DB.getQuiz(email);
+  const quizSet = {
+    email: email,
+    quizArray: quizArray,
+  };
+  if (existing) {
+    await DB.updateQuiz(quizSet);
+  } else {
+    await DB.addQuiz(quizSet);
+  }
 }
 
 // Get quiz array
-function getQuizArray(email) {
-  return quizzes[email] || [];
+async function getQuizArray(email) {
+  const quizDoc = await DB.getQuiz(email);
+  return quizDoc ? quizDoc.quizArray : [];
 }
 
 app.listen(port, () => {
