@@ -1,6 +1,7 @@
 import React from "react";
 import { QuizQuestion } from "../components/quizQuestion.jsx";
 import { useNavigate, useParams } from "react-router-dom";
+import { apiFetch } from "../components/api.js";
 
 export function CreateQuiz() {
   const [title, setTitle] = React.useState("");
@@ -12,7 +13,7 @@ export function CreateQuiz() {
 
   React.useEffect(() => {
     if (quizId) {
-      fetch("/api/quiz/get")
+      apiFetch("/api/quiz/get")
         .then((res) => res.json())
         .then((data) => {
           const existing = data.find((q) => q.id === Number(quizId));
@@ -50,7 +51,7 @@ export function CreateQuiz() {
       alert("Please add at least one question.");
       return;
     }
-    await fetch("/api/quiz/create", {
+    await apiFetch("/api/quiz/create", {
       method: "POST",
       headers: { "Content-Type": "application/json; charset=UTF-8" },
       body: JSON.stringify({ title, questions, quizId }),
@@ -65,7 +66,7 @@ export function CreateQuiz() {
       return;
     }
     if (window.confirm("Are you sure you want to delete this quiz?")) {
-      await fetch("/api/quiz/delete", {
+      await apiFetch("/api/quiz/delete", {
         method: "DELETE",
         headers: { "Content-Type": "application/json; charset=UTF-8" },
         body: JSON.stringify({ quizId }),

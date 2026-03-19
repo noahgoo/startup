@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { TestQuestion } from "../components/testQuestion.jsx";
+import { apiFetch } from "../components/api.js";
 
 export function TakeQuiz() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export function TakeQuiz() {
 
   // Get quiz info
   React.useEffect(() => {
-    fetch("/api/quiz/get")
+    apiFetch("/api/quiz/get")
       .then((res) => res.json())
       .then((data) => {
         setQuizArray(data);

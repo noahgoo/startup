@@ -1,12 +1,13 @@
 import React from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { QuizCard } from "../components/quizCard.jsx";
+import { apiFetch } from "../components/api.js";
 
 export function Dashboard() {
   const [quizzes, setQuizzes] = React.useState([]);
 
   React.useEffect(() => {
-    fetch("/api/quiz/get")
+    apiFetch("/api/quiz/get")
       .then((res) => res.json())
       .then((data) => setQuizzes(data))
       .catch((err) => console.error("Error fetching quizzes:", err));
