@@ -88,10 +88,17 @@ Below is a simple sequence diagram for completing a quiz or editing/creating a q
 
 ## Service
 
-- [x] Completed all pregrequisites (Simon deployed, commits)
+- [x] Completed all prerequisites (Simon deployed, commits)
 - [x] Node.js/Express setup for service part.
 - [x] Static middleware for frontend.
 - [x] 3rd party API call to dummyjson to get inspirational quote.
 - [x] Created backend endpoints, stores auth and quizzes on the server.
 - [x] Frontend calls endpoints using `fetch` for all auth and quiz creation/retrieval.
 - [x] Uses Bcrypt to encrypt passwords.
+
+## Database
+
+- [x] Completed all prerequisites (Simon deployed, commits)
+- [x] Added connection to database (database.js).
+- [x] User data and credentials is now stored in MongoDB.
+- [x] Quiz data is also stored in MongoDB.

@@ -60,3 +60,7 @@
 
 - Divided into multiple service endpoints.
 - REST HTTP verb always acts on a resource.
+
+# Database
+
+- You can use a dbConfig.json file that stores the info to access you cluster on MongoDB
