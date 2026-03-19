@@ -14,6 +14,7 @@ import { CreateQuiz } from "./create-quiz/create-quiz";
 import { TakeQuiz } from "./take-quiz/take-quiz";
 import { Login } from "./login/login";
 import { Toast } from "./components/toast";
+import { Button } from "react-bootstrap";
 
 function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -91,13 +92,12 @@ function Header() {
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="/login"
+              <Button
                 onClick={logoutUser}
                 className="text-slate-800 hover:text-teal-600 transition font-medium"
               >
                 Logout
-              </NavLink>
+              </Button>
             </li>
           </menu>
           <p className="cool_font text-teal-500 font-medium">
@@ -143,13 +143,15 @@ function Header() {
             >
               Take Quiz
             </NavLink>
-            <NavLink
-              to="/login"
-              className="text-slate-700 hover:text-teal-500"
-              onClick={() => setIsOpen(false)}
+            <Button
+              className="text-slate-700 hover:text-teal-500 block text-right w-full"
+              onClick={() => {
+                setIsOpen(false);
+                logoutUser();
+              }}
             >
               Logout
-            </NavLink>
+            </Button>
             <p className="cool_font text-teal-500 font-medium">
               Hi {userTrimmed}!
             </p>

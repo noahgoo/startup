@@ -69,7 +69,6 @@ apiRouter.post("/auth/login", async (req, res) => {
 apiRouter.delete("/auth/logout", async (req, res) => {
   const user = await findUser("token", req.cookies[authCookieName]);
   if (user) {
-    delete user.token;
     await DB.updateUserRemoveAuth(user);
   }
   res.clearCookie(authCookieName);
@@ -77,8 +76,13 @@ apiRouter.delete("/auth/logout", async (req, res) => {
 });
 
 // Get current user
-apiRouter.get("/auth/me", verifyAuth, async (req, res) => {
-  res.send({ email: req.user.email });
+apiRouter.get("/auth/me", async (req, res) => {
+  const user = await findUser("token", req.cookies[authCookieName]);
+  if (user) {
+    res.send({ email: user.email });
+  } else {
+    res.send({ email: null });
+  }
 });
 
 // Create quiz array

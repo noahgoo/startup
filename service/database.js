@@ -1,5 +1,5 @@
 const { MongoClient } = require("mongodb");
-const config = require("./dbConfig.json");
+const config = require("../dbConfig.json");
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 
@@ -39,7 +39,10 @@ async function updateUser(user) {
 }
 
 async function updateUserRemoveAuth(user) {
-  await userCollection.updateOne({ email: user.email }, { $set: user });
+  await userCollection.updateOne(
+    { email: user.email },
+    { $unset: { token: "" } },
+  );
 }
 
 // Quizzes
